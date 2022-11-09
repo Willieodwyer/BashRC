@@ -20,7 +20,7 @@ alias copen='${HOME}/Stuff/clion-2020.1.1/bin/clion.sh'
 alias studio='/home/will/Downloads/android-studio/bin/studio.sh &'
 
 alias redir='cd `pwd`'
-alias clean="git clean -fdx -e .idea -e core.dump -e *.deb -e credentials.json -e key_store.json -e heaptrack* ."
+alias clean="git clean -fdx -e .idea -e core.dump -e *.deb -e credentials.json -e key_store.json -e heaptrack* -e '.vscode' ."
 alias clip='xclip -selection clipboard'
 alias fiend='gitfiend'
 alias docker='sudo docker'
