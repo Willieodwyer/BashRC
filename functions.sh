@@ -1,5 +1,22 @@
 # # # Functions # # #
 
+function ssh_on
+{
+  curl 'http://192.168.20.1/config/ssh_on' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'Content-Type: application/json;charset=UTF-8' \
+  -H "Cookie: $1" \
+  --data-raw '{}' 
+}
+
+function ssh_off
+{
+  curl 'http://192.168.20.1/config/ssh_off' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'Content-Type: application/json;charset=UTF-8' \
+  -H "Cookie: $1" 
+}
+
 function wget_play {
   echo Playing $1
   wget -qO- $1 | ffplay -
