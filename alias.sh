@@ -3,7 +3,12 @@
 # Set HOME, CORE, CLION
 
 function change_dir {
-  pushd $1 > /dev/null
+  if [ -z $1 ]
+  then
+    pushd $HOME > /dev/null
+  else
+    pushd $1 > /dev/null
+  fi
 }
 
 alias cd='change_dir'
