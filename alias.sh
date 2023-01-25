@@ -13,6 +13,7 @@ function change_dir {
 
 alias cd='change_dir'
 alias pop='popd'
+alias p='popd'
 
 alias yum='sudo apt-get'
 alias gits='git status'
