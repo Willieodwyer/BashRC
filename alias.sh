@@ -13,7 +13,8 @@ function change_dir {
 
 alias cd='change_dir'
 alias pop='popd'
-alias p='popd'
+alias p='popd > /dev/null'
+alias dirs='dirs | tr " " "\n"'
 
 alias yum='sudo apt-get'
 alias gits='git status'
@@ -26,7 +27,7 @@ alias copen='${HOME}/Stuff/clion-2020.1.1/bin/clion.sh'
 alias studio='/home/will/Downloads/android-studio/bin/studio.sh &'
 
 alias redir='cd `pwd`'
-alias clean="git clean -fdx -e .idea -e core.dump -e *.deb -e credentials.json -e key_store.json -e heaptrack* -e '.vscode' ."
+alias clean="git clean -fdx -e .idea -e core.dump -e *.deb -e credentials.json -e config.json* -e key_store.json -e heaptrack* -e '.vscode' ."
 alias clip='xclip -selection clipboard'
 alias fiend='gitfiend'
 alias docker='sudo docker'

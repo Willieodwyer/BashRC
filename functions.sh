@@ -1,5 +1,10 @@
 # # # Functions # # #
 
+function transfer_bin
+{
+  ldd $1 | awk '{ print $3 }' | grep Core | xargs -r -n1 -I'{}' rsync -avzP $1 '{}' $2
+}
+
 function ssh_on
 {
   curl 'http://192.168.20.1/config/ssh_on' \
