@@ -2,7 +2,7 @@
 
 function transfer_bin
 {
-  ldd $1 | awk '{ print $3 }' | grep Core | xargs -r -n1 -I'{}' rsync -avzP $1 '{}' $2
+  ldd $1 | awk '{ print $3 }' | grep Core | xargs -r -n1 -I'{}' rsync -avzLKP $1 '{}' $2
 }
 
 function ssh_on
