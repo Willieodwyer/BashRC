@@ -42,3 +42,5 @@ alias drop="git stash && git stash drop >> ~/.dropped_stashes"
 
 alias branch_cleanup='git remote prune origin | awk "/origin/ {print $4}" | cut -d "/" -f 2 | xargs git branch -d'
 
+alias list_branches="git for-each-ref --format='%(color:cyan)%(authordate:format:%m/%d/%Y %I:%M %p) %(align:25,left)%(color:yellow)%(authorname)%(end) %(color:reset)%(refname:strip=3)' --sort=author refs/remotes"
+
