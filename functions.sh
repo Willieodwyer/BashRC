@@ -2,7 +2,7 @@
 
 function merge_request
 {
-  echo "https://gitlab.evsnet.local/Core/Core/merge_requests/new?merge_request%5Bsource_project_id%5D=13&merge_request%5Bsource_branch%5D=$(git symbolic-ref --short HEAD)&merge_request%5Btarget_project_id%5D=13&merge_request%5Btarget_branch%5D=$1"
+  echo "https://gitlab.db-gla.net/Core/Core/-/merge_requests/new?merge_request%5Bsource_project_id%5D=13&merge_request%5Bsource_branch%5D=$(git symbolic-ref --short HEAD)&merge_request%5Btarget_project_id%5D=13&merge_request%5Btarget_branch%5D=$1"
 }
 
 function transfer_bin
