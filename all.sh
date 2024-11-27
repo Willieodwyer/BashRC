@@ -1,5 +1,8 @@
 #!/bin/bash
 
-source "$1/alias.sh"
-source "$1/exports.sh"
-source "$1/functions.sh"
+DIR=$(dirname $BASH_SOURCE)
+
+source "$DIR/alias.sh"
+source "$DIR/exports.sh"
+source "$DIR/functions.sh"
+

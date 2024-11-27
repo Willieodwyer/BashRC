@@ -11,6 +11,8 @@ function change_dir {
   fi
 }
 
+alias open='wslview'
+
 alias pull='git stash && git pull && git stash pop'
 
 alias cd='change_dir'
@@ -23,13 +25,13 @@ alias gits='git status'
 alias make='\make -j `nproc`'
 alias ninja='\ninja -j `nproc`'
 
-alias clion='${HOME}/Stuff/clion-${CLION}/bin/clion.sh >/dev/null 2>&1 &'
+alias clion='${HOME}/Stuff/clion-${CLION}/bin/clion >/dev/null 2>&1 &'
 alias rootlion='sudo ${HOME}/Stuff/clion-${CLION}/bin/clion.sh &'
 alias copen='${HOME}/Stuff/clion-2020.1.1/bin/clion.sh'
 alias studio='/home/will/Downloads/android-studio/bin/studio.sh &'
 
 alias redir='cd `pwd`'
-alias clean="git clean -fdx -e certs -e .idea -e core.dump -e *.deb -e credentials.json -e config.json* -e key_store.json -e heaptrack* -e '.vscode' ."
+alias clean="git clean -fdx -e certs -e .idea -e core.dump -e *.deb -e credentials.json -e config.json* -e key_store.json -e heaptrack* -e '.vscode' -e '.venv' ."
 alias clip='xclip -selection clipboard'
 alias fiend='gitfiend'
 alias docker='sudo docker'
@@ -42,7 +44,8 @@ alias cleanup_branches='git branch --merged | egrep -v "(^\*|master|dev)" | xarg
 
 alias drop="git stash && git stash drop >> ~/.dropped_stashes"
 
-alias branch_cleanup='git remote prune origin | awk "/origin/ {print $4}" | cut -d "/" -f 2 | xargs git branch -d'
+alias branch_cleanup='git remote prune origin; git branch -vv | grep ": gone\]" | awk "{print $1}" | xargs git branch -d'
 
-alias list_branches="git for-each-ref --format='%(color:cyan)%(authordate:format:%m/%d/%Y %I:%M %p) %(align:25,left)%(color:yellow)%(authorname)%(end) %(color:reset)%(refname:strip=3)' --sort=author refs/remotes"
+alias list_branches="git for-each-ref --format='%(color:cyan)%(authordate:format:%d/%m/%Y %I:%M %p) %(align:25,left)%(color:yellow)%(authorname)%(end) %(color:reset)%(refname:strip=3)' --sort=author refs/remotes"
+alias list_branches_leaderboard='list_branches | cut -c 20-  | cut -c -20 | uniq -c | sort -rh'
 

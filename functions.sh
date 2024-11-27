@@ -1,5 +1,35 @@
 # # # Functions # # #
 
+function send_wget 
+{
+  wget -O - $3 | ssh $1 "cat > $2"
+}
+
+function list_images
+{
+  aws sso login --no-browser
+  aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 690362503302.dkr.ecr.eu-west-1.amazonaws.com
+  for x in $(aws ecr list-images --repository-name develop/edgevis/encoder --registry-id 690362503302 --region eu-west-1 | grep imageTag | awk '{ print $2 }' | tr -d '"' | sort); do
+	echo "690362503302.dkr.ecr.eu-west-1.amazonaws.com/develop/edgevis/encoder:$x"
+  done
+}
+
+function strip_debug
+{
+  array="$(ldd $1 | awk '{ print $3 }' | grep Core) $1"
+  for x in $array; do
+    file=$(basename $x)
+    echo "Stripping $file"
+    strip --only-keep-debug $x -o "$file.dbg"
+    strip $x
+  done
+}
+
+function ip_address
+{
+  ifconfig eth0 | grep 'inet ' | awk '{print $2}'
+}
+
 function merge_request
 {
   echo "https://gitlab.db-gla.net/Core/Core/-/merge_requests/new?merge_request%5Bsource_project_id%5D=13&merge_request%5Bsource_branch%5D=$(git symbolic-ref --short HEAD)&merge_request%5Btarget_project_id%5D=13&merge_request%5Btarget_branch%5D=$1"
