@@ -2,7 +2,13 @@
 
 function send_wget 
 {
-  wget -O - $3 | ssh $1 "cat > $2"
+  LINK="$3"
+  if [ -z $LINK ]; then
+    echo -n "Download link: "
+    read -r LINK
+  fi
+  echo -e "\n -- Downloading: $LINK " 
+  wget -O - $LINK | ssh $1 "cat > $2"
 }
 
 function list_images
