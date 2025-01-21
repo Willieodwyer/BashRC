@@ -1,5 +1,11 @@
 # # # Functions # # #
 
+function update_pi
+{
+  send_wget $1 $2 $3
+  ssh $1 sudo apt install $2
+}
+
 function send_wget 
 {
   LINK="$3"
