@@ -1,5 +1,25 @@
 # # # Functions # # #
 
+log_cpu ()
+{
+    FILE="cpu-$(date +"%d-%m-%y-%H.%M.%S").log";
+    while true; do
+        top -bn1 | grep --color=auto --color=auto --color=auto "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}' >> "$FILE";
+        sleep 1;
+        echo "Max: $(sort $FILE | tail -1)";
+    done
+}
+
+log_mem ()
+{
+    FILE="cpu-$(date +"%d-%m-%y-%H.%M.%S").log";
+    while true; do
+        echo "$(top -bn1 | grep "MiB Mem" | awk '{print $8"MiB " $9}' | cut -d',' -f 1) - $(date +"%T")" >> "$FILE";
+        sleep 1;
+        echo "Max: $(sort $FILE | tail -1)";
+    done
+}
+
 function update_pi
 {
   send_wget $1 $2 $3
